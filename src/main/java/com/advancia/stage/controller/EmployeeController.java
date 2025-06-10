@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.advancia.stage.dto.*;
 import com.advancia.stage.dto.EmployeeFilterDTO;
 import com.advancia.stage.dto.EmployeesDTO;
 import com.advancia.stage.model.Countries;
@@ -89,4 +91,19 @@ public class EmployeeController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+	@Operation(summary= "Modifica dell'impiegato ")
+	@PutMapping("/employessModifica")
+	public ResponseEntity<?> updateEmployee(@RequestBody EmployeeUpdateDTO employeedto){
+		 empService.updateEmployee(employeedto);
+		 
+		 return ResponseEntity.ok().build();
+	}
+//		
+//		EmployeesDTO update= empService.updateEmployee(id,employeedto);
+//		return ResponseEntity.ok(update);
+//		
+//			}
+	
+	
 }
